@@ -92,8 +92,43 @@ $.users[*].email
 ["alice@example.com", "bob@example.com", "charlie@example.com"]
 ```
 
----
+### 🚌 Scenario: Extracting Nested Values from Multiple Objects
 
+📘 **Sample JSON (`q2.json`)**:
+```json
+{
+    "car": {
+        "color": "blue",
+        "price": "$20,000"
+    },
+    "bus": {
+        "color": "white",
+        "price": "$120,000"
+    }
+}
+```
+
+#### 🎯 Goal: Get the `color` property of all top-level objects (like `car`, `bus`)
+
+🔍 **JSONPath Query**:
+```jsonpath
+$.*.color
+```
+
+✅ **Result**:
+```json
+[
+  "blue",
+  "white"
+]
+```
+
+#### 🧠 Explanation:
+- `$.*` selects all top-level properties (`car`, `bus`).
+- `*.color` accesses the `color` property within each of those objects.
+
+This is a perfect example of combining the wildcard `*` with dot notation to reach into consistent structures under multiple root-level keys.
+---
 ### 📘 Summary of Wildcard `*` Usage
 
 | Expression            | Description                                             |
