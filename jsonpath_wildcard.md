@@ -1,6 +1,43 @@
 ### 🌟 JSONPath Wildcard `*`
 The `*` wildcard in JSONPath is used to match all elements or properties at a specific level, much like a glob in shell scripting. It’s a powerful tool for querying unknown or dynamic data structures.
 
+### 📘 Sample JSON Data
+
+This is a **real-world e-commerce user data** JSON:
+
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "email": "alice@example.com",
+      "roles": ["admin", "editor"],
+      "orders": [
+        { "id": 1001, "amount": 250, "status": "shipped" },
+        { "id": 1002, "amount": 120, "status": "processing" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "email": "bob@example.com",
+      "roles": ["viewer"],
+      "orders": [
+        { "id": 1003, "amount": 300, "status": "shipped" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "email": "charlie@example.com",
+      "roles": [],
+      "orders": []
+    }
+  ]
+}
+```
+
 #### 🧾 Usage Examples
 
 1. **📋 Match all items in an array**
