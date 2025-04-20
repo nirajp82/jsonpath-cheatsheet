@@ -1,7 +1,10 @@
-### 🌟 JSONPath Wildcard `*`
-The `*` wildcard in JSONPath is used to match all elements or properties at a specific level, much like a glob in shell scripting. It’s a powerful tool for querying unknown or dynamic data structures.
+## 🌟 JSONPath Wildcard `*`
 
-### 📘 Sample JSON Data
+The `*` wildcard in JSONPath is used to match all elements or properties at a specific level—similar to a glob in shell scripting. It’s a powerful tool for querying unknown, dynamic, or multi-key JSON structures.
+
+---
+
+### 📘 Sample JSON Data (User-Focused)
 
 This is a **real-world e-commerce user data** JSON:
 
@@ -38,9 +41,11 @@ This is a **real-world e-commerce user data** JSON:
 }
 ```
 
-#### 🧾 Usage Examples
+---
 
-1. **📋 Match all items in an array**
+### 🧾 Usage Examples
+
+#### 1. **📋 Match all items in an array**
 ```jsonpath
 $.users[*]
 ```
@@ -55,7 +60,9 @@ $.users[*]
 ]
 ```
 
-2. **🔑 Match all properties of an object**
+---
+
+#### 2. **🔑 Match all properties of an object**
 ```jsonpath
 $.users[0].*
 ```
@@ -66,7 +73,9 @@ $.users[0].*
 [1, "Alice", "alice@example.com", ["admin", "editor"], [...orders...]]
 ```
 
-3. **📦 Match all nested orders across users**
+---
+
+#### 3. **📦 Match all nested orders across users**
 ```jsonpath
 $..orders[*]
 ```
@@ -81,7 +90,9 @@ $..orders[*]
 ]
 ```
 
-4. **📧 Get all user emails**
+---
+
+#### 4. **📧 Get all user emails**
 ```jsonpath
 $.users[*].email
 ```
@@ -91,6 +102,8 @@ $.users[*].email
 ```json
 ["alice@example.com", "bob@example.com", "charlie@example.com"]
 ```
+
+---
 
 ### 🚌 Scenario: Extracting Nested Values from Multiple Objects
 
@@ -108,25 +121,23 @@ $.users[*].email
 }
 ```
 
-#### 🎯 Goal: Get the `color` property of all top-level objects (like `car`, `bus`)
+#### 🎯 Goal: Get the `color` property of all top-level objects
 
-🔍 **JSONPath Query**:
 ```jsonpath
 $.*.color
 ```
 
 ✅ **Result**:
 ```json
-[
-  "blue",
-  "white"
-]
+["blue", "white"]
 ```
 
-#### 🧠 Explanation:
+🧠 **Explanation**:
 - `$.*` selects all top-level properties (`car`, `bus`).
-- `*.color` accesses the `color` property within each of those objects.
+- `.color` accesses the `color` property within each of those objects.
+
 ---
+
 ### 🚗🚌 Scenario: Accessing Nested Properties Under a Named Parent
 
 📘 **Sample JSON (`q3.json`)**:
@@ -147,32 +158,31 @@ $.*.color
 
 #### 🎯 Goal: Get the `price` of all vehicle types (car, bus)
 
-🔍 **JSONPath Query**:
 ```jsonpath
 $.vehicles.*.price
 ```
 
 ✅ **Result**:
 ```json
-[
-  "$20,000",
-  "$120,000"
-]
+["$20,000", "$120,000"]
 ```
 
-#### 🧠 Explanation:
+🧠 **Explanation**:
 - `$.vehicles` targets the main container.
 - `*` selects all child objects (`car`, `bus`).
 - `.price` extracts the `price` field from each.
 
------------------
-### 📘 Summary of Wildcard `*` Usage
+---
 
-| Expression            | Description                                             |
-|-----------------------|---------------------------------------------------------|
-| `$.*`                 | All properties of the root object                      |
-| `$..*`                | All properties at all levels recursively               |
-| `$.users[*]`          | All user objects                                        |
-| `$.users[*].name`     | All user names                                          |
-| `$.users[0].*`        | All values of the first user's properties              |
-| `$..orders[*].amount` | All order amounts regardless of user                   |
+### 🧠 Summary of Wildcard `*` Usage
+
+| Expression              | Description                                                |
+|-------------------------|------------------------------------------------------------|
+| `$.*`                   | All properties of the root object                          |
+| `$..*`                  | All properties at all levels recursively                   |
+| `$.users[*]`            | All user objects in an array                               |
+| `$.users[*].name`       | All user names                                             |
+| `$.users[0].*`          | All values of the first user's properties                  |
+| `$..orders[*].amount`   | All order amounts regardless of which user made the order  |
+| `$.*.color`             | All `color` properties from top-level objects (q2 example) |
+| `$.vehicles.*.price`    | All `price` values inside nested vehicle objects (q3)      |
