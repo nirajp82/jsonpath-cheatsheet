@@ -126,9 +126,46 @@ $.*.color
 #### 🧠 Explanation:
 - `$.*` selects all top-level properties (`car`, `bus`).
 - `*.color` accesses the `color` property within each of those objects.
-
-This is a perfect example of combining the wildcard `*` with dot notation to reach into consistent structures under multiple root-level keys.
 ---
+### 🚗🚌 Scenario: Accessing Nested Properties Under a Named Parent
+
+📘 **Sample JSON (`q3.json`)**:
+```json
+{
+    "vehicles": {
+        "car": {
+            "color": "blue",
+            "price": "$20,000"
+        },
+        "bus": {
+            "color": "white",
+            "price": "$120,000"
+        }
+    }
+}
+```
+
+#### 🎯 Goal: Get the `price` of all vehicle types (car, bus)
+
+🔍 **JSONPath Query**:
+```jsonpath
+$.vehicles.*.price
+```
+
+✅ **Result**:
+```json
+[
+  "$20,000",
+  "$120,000"
+]
+```
+
+#### 🧠 Explanation:
+- `$.vehicles` targets the main container.
+- `*` selects all child objects (`car`, `bus`).
+- `.price` extracts the `price` field from each.
+
+-----------------
 ### 📘 Summary of Wildcard `*` Usage
 
 | Expression            | Description                                             |
